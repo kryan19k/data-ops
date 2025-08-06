@@ -3,6 +3,9 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
+import { useFrame, useThree } from '@react-three/fiber';
+import { Html, Line, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -31,7 +34,7 @@ interface D8Node {
   shortName: string;
   position: { x: number; y: number; z: number };
   features: string[];
-  status: 'idle' | 'processing' | 'complete';
+  status: 'idle' | 'processing' | 'completed' | 'error';
   connections: string[];
   color: string;
   type: 'core' | 'support';
