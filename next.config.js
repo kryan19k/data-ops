@@ -6,6 +6,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+
   webpack: (config, { isServer }) => {
     // Fix for Three.js and other packages that use WebGL
     config.resolve.fallback = {
