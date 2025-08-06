@@ -48,8 +48,13 @@
     "typescript": "^5"
   },
   "overrides": {
+    "odbc": false,
     "magic-ui": {
       "odbc": false
     }
+  },
+  "resolutions": {
+    "odbc": false,
+    "magic-ui/odbc": false
   }
 }
