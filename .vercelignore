@@ -1,5 +1,5 @@
-node_modules/odbc
-*.log
+node_modules
 .git
-.next
+*.log
 .env.local
+.env.*.local
