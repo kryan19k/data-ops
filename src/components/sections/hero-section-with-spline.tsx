@@ -83,7 +83,7 @@ export function HeroSectionWithSpline() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 bg-grid-small-black/[0.1] dark:bg-grid-small-white/[0.1]" />
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       
       {/* Main Content Container */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -148,7 +148,7 @@ export function HeroSectionWithSpline() {
             >
                              <Button 
                  size="lg" 
-                 className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8 py-6"
+                 className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8 py-6"
                >
                  Start Your Project
                  <ArrowRight className="ml-2 h-5 w-5" />

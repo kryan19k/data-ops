@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, Suspense } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html, Line, OrbitControls } from '@react-three/drei';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +14,16 @@ import {
   Shield,
   Zap
 } from 'lucide-react';
-import * as THREE from 'three';
+
+// Dynamically import the Three.js ecosystem component with no SSR
+const EcosystemVisualization = dynamic(() => import('./d8s-ecosystem-3d'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full">
+      <div className="text-white text-xl">Loading 3D Ecosystem...</div>
+    </div>
+  )
+});
 
 interface D8Node {
   id: string;
@@ -473,8 +481,8 @@ export function D8sEcosystemSection() {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Dark Background */}
-      <div className="absolute inset-0 bg-black" />
+      {/* Enhanced Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.05),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(34,197,94,0.05),transparent_50%)]" />
       
@@ -488,16 +496,16 @@ export function D8sEcosystemSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <Badge variant="outline" className="mb-6 px-6 py-2 text-lg border-blue-500/30 bg-blue-500/10 text-blue-400">
+            <Badge variant="outline" className="mb-6 px-6 py-2 text-lg border-primary/30 bg-primary/10 text-primary">
               D8 DATA GOVERNANCE ECOSYSTEM
             </Badge>
             <h2 className="text-5xl md:text-7xl font-bold leading-tight">
-              <span className="text-white">Complete Data </span>
+              <span className="text-foreground">Complete Data </span>
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
                 Architecture
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               A comprehensive ecosystem of intelligent agents orchestrating your entire data lifecycle
             </p>
           </motion.div>
@@ -526,21 +534,13 @@ export function D8sEcosystemSection() {
 
         {/* Main Three.js Ecosystem Visualization */}
         <div className="relative">
-          <div className="bg-black/50 backdrop-blur-xl border border-gray-800/50 rounded-3xl shadow-2xl overflow-hidden">
+          <div className="bg-black/90 border border-gray-800/50 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl">
             <div className="h-[1000px] w-full">
-              <Canvas
-                camera={{ position: [0, 0, 25], fov: 45 }}
-                gl={{ antialias: true, alpha: true }}
-                style={{ background: 'transparent' }}
-              >
-                <Suspense fallback={null}>
-                  <EcosystemScene
-                    nodes={d8Nodes}
-                    activeNodeId={activeNodeId}
-                    onNodeClick={handleNodeClick}
-                  />
-                </Suspense>
-              </Canvas>
+              <EcosystemVisualization
+                nodes={d8Nodes}
+                activeNodeId={activeNodeId}
+                onNodeClick={handleNodeClick}
+              />
             </div>
           </div>
         </div>

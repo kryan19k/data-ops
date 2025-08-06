@@ -63,25 +63,11 @@ const services = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-purple-600/10 to-purple-700/20">
         <div className="absolute inset-0 opacity-30">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                scale: [0, 1, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+          <motion.div className="absolute w-1 h-1 bg-purple-400 rounded-full top-1/4 left-1/4" animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0 }} />
+          <motion.div className="absolute w-1 h-1 bg-purple-400 rounded-full top-1/3 right-1/3" animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.3 }} />
+          <motion.div className="absolute w-1 h-1 bg-purple-400 rounded-full bottom-1/3 left-1/2" animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.6 }} />
+          <motion.div className="absolute w-1 h-1 bg-purple-400 rounded-full top-2/3 right-1/4" animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 0.9 }} />
+          <motion.div className="absolute w-1 h-1 bg-purple-400 rounded-full bottom-1/4 left-1/3" animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1.2 }} />
         </div>
       </div>
     ),

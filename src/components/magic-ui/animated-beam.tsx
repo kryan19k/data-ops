@@ -142,7 +142,7 @@ export const AnimatedBeam = forwardRef<SVGSVGElement, AnimatedBeamProps>(
         >
           <motion.animate
             attributeName="stroke-dashoffset"
-            values={reverse ? ["1000", "0"] : ["0", "1000"]}
+            values={reverse ? ["1000", "0"] : ["0", "1000"] as any}
             dur={`${duration}s`}
             repeatCount="indefinite"
             begin={delay}

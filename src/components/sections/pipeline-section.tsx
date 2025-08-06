@@ -23,7 +23,7 @@ interface PipelineStage {
   id: string;
   name: string;
   description: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   status: "idle" | "processing" | "completed" | "error";
   metrics?: {
     label: string;
@@ -146,7 +146,7 @@ export function PipelineSection() {
             <Button
               onClick={togglePipeline}
               variant={isRunning ? "default" : "outline"}
-              className="flex items-center gap-2 bg-primary text-always-visible-white hover:bg-primary/90"
+              className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
               {isRunning ? "Pause Pipeline" : "Start Pipeline"}
@@ -179,7 +179,9 @@ export function PipelineSection() {
                   className="flex flex-col items-center"
                 >
                   <Card
-                    ref={(el) => (stageRefs.current[stage.id] = el)}
+                    ref={(el) => {
+                      stageRefs.current[stage.id] = el;
+                    }}
                     className={`w-48 h-56 transition-all duration-300 cursor-pointer hover:scale-105 ${getStatusColor(stage.status)} ${
                       selectedStage === stage.id ? "ring-2 ring-primary" : ""
                     }`}
@@ -225,9 +227,9 @@ export function PipelineSection() {
                 return (
                   <AnimatedBeam
                     key={`${stage.id}-${pipelineStages[index + 1].id}`}
-                    containerRef={containerRef}
-                    fromRef={fromRef}
-                    toRef={toRef}
+                    containerRef={containerRef as React.RefObject<HTMLElement>}
+                    fromRef={fromRef as React.RefObject<HTMLElement>}
+                    toRef={toRef as React.RefObject<HTMLElement>}
                     duration={3}
                     delay={index * 0.5}
                     gradientStartColor="#3b82f6"
